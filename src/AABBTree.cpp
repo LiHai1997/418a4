@@ -13,9 +13,15 @@ AABBTree::AABBTree(
 {
   ////////////////////////////////////////////////////////////////////////////
   // Add your code here
-  if (objects.size() <= 1)
+  if (objects.size() == 0)
   {
-  	throw;
+  	this->left = NULL;
+  	this->right = NULL;
+  }else if (objects.size() == 1)
+  {
+  	this->left = objects[0];
+  	insert_box_into_box(this->left->box, this->box);
+  	this->right = NULL;
   }else
   {
   	for (int i = 0; i < objects.size(); ++i)
@@ -32,7 +38,7 @@ AABBTree::AABBTree(
   	auto z_len = abs(this->box.max_corner.z() - this->box.min_corner.z());
   	auto z_mid = (this->box.max_corner.z() + this->box.min_corner.z()) / 2.0;
 
-  	std::vector<std::shared_ptr<Object>> left, right;
+  	std::vector<std::shared_ptr<Object>> left_tree, right_tree;
   	std::shared_ptr<Object> object;
 
   	for (int i = 0; i < objects.size(); ++i)
@@ -42,65 +48,65 @@ AABBTree::AABBTree(
   		{
   			if (object->box.center().x() < x_mid)
   			{
-  				left.push_back(object);
+  				left_tree.push_back(object);
   			}else
   			{
-  				right.push_back(object);
+  				right_tree.push_back(object);
   			}
   		}else if (y_len > z_len)
   		{
   			if (object->box.center().y() < y_mid)
   			{
-  				left.push_back(object);
+  				left_tree.push_back(object);
   			}else
   			{
-  				right.push_back(object);
+  				right_tree.push_back(object);
   			}
   		}else
   		{
   			if (object->box.center().z() < z_mid)
   			{
-  				left.push_back(object);
+  				left_tree.push_back(object);
   			}else
   			{
-  				right.push_back(object);
+  				right_tree.push_back(object);
   			}
   		}
 
   	}
 
-  	if (left.size() == objects.size())
+  	if (left_tree.size() == objects.size())
   	{
-  		for (int i = left.size()/2; i < left.size(); ++i)
+  		for (int i = left_tree.size()/2; i < left_tree.size(); ++i)
   		{
-  			right.push_back(left[i]);
+  			right_tree.push_back(left_tree[i]);
   		}
-  		left.erase(left.begin() + left.size()/2, left.end());
-  	}else if (right.size() == objects.size())
+  		left_tree.erase(left_tree.begin() + left_tree.size()/2, left_tree.end());
+  	}else if (right_tree.size() == objects.size())
   	{
-  		for (int i = right.size()/2; i < right.size(); ++i)
+  		for (int i = right_tree.size()/2; i < right_tree.size(); ++i)
   		{
-  			left.push_back(right[i]);
+  			left_tree.push_back(right_tree[i]);
   		}
-  		right.erase(right.begin() + right.size()/2, right.end());
+  		right_tree.erase(right_tree.begin() + right_tree.size()/2, right_tree.end());
   	}
 
-  	if (left.size() == 1)
+  	if (left_tree.size() == 1)
   	{
-  		this->left = left[0];
-  	}else if (left.size() > 1)
+  		this->left = left_tree[0];
+  	}else if (left_tree.size() > 1)
   	{
-  		this->left = std::make_shared<AABBTree>(left, a_depth + 1);
+  		this->left = std::make_shared<AABBTree>(left_tree, a_depth + 1);
   	}else 
   	{
   		throw;
   	}
-  	if (right.size() == 1)
+  	if (right_tree.size() == 1)
   	{
-  		this->right = right[0];
-  	}else if (right.size() > 1)
+  		this->right = right_tree[0];
+  	}else if (right_tree.size() > 1)
   	{
-  		this->right = std::make_shared<AABBTree>(right, a_depth + 1);
+  		this->right = std::make_shared<AABBTree>(right_tree, a_depth + 1);
   	}else 
   	{
   		throw;
