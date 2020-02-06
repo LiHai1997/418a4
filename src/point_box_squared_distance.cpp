@@ -28,6 +28,6 @@ double point_box_squared_distance(
   		closest(i) = query_axis;
   	}
   }
-  return (closest - query).squareNorm();
+  return (closest - query).squaredNorm();
   ////////////////////////////////////////////////////////////////////////////
 }
