@@ -16,7 +16,7 @@ bool triangle_triangle_intersection(
   double max_t = 1,
   double t;
 
-  Ray ray(Eigen::Vecotr3d(0,0,0), Eigen::Vecotr3d(0,0,0));
+  Ray ray(Eigen::Vector3d(0,0,0), Eigen::Vector3d(0,0,0));
   
   ray.origin = B0;
   ray.direction = B1 - B0;
