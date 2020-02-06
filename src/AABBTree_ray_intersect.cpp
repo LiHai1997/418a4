@@ -1,4 +1,11 @@
 #include "AABBTree.h"
+#include "MeshTriangle.h"
+#include "CloudPoint.h"
+#include <limits.h>
+#include <ray_intersect_box.h>
+#include <ray_intersect_triangle.h>
+#include <iostream>
+
 
 // See AABBTree.h for API
 bool AABBTree::ray_intersect(

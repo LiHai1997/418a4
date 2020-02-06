@@ -1,5 +1,11 @@
 #include "point_AABBTree_squared_distance.h"
 #include <queue> // std::priority_queue
+#include <bits/stdc++.h>
+#include "point_box_squared_distance.h"
+#include "Object.h"
+#include "CloudPoint.h"
+#include <limits.h>
+#include <bits/stdc++.h>
 
 typedef std::pair<double, std::shared_ptr<Object>> q_pair;
 bool point_AABBTree_squared_distance(

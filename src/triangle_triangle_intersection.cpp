@@ -1,4 +1,6 @@
 #include "triangle_triangle_intersection.h"
+#include "Ray.h"
+#include "ray_intersect_triangle.h"
 
 bool triangle_triangle_intersection(
   const Eigen::RowVector3d & A0,
