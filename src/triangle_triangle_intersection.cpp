@@ -12,8 +12,8 @@ bool triangle_triangle_intersection(
 {
   ////////////////////////////////////////////////////////////////////////////
   // Replace with your code here:
-  double min_t = 0,
-  double max_t = 1,
+  double min_t = 0;
+  double max_t = 1;
   double t;
 
   Ray ray(Eigen::Vector3d(0,0,0), Eigen::Vector3d(0,0,0));
