@@ -19,15 +19,15 @@ bool AABBTree::ray_intersect(
   // Replace with your code here:
   if (ray_intersect_box(ray, this->box, min_t, max_t))
   {
+
     bool left_hit = false;
-    bool right_hit = false;
     double left_t = std::numeric_limits<double>::infinity();
-    double right_t = std::numeric_limits<double>::infinity();
-
     std::shared_ptr<Object> left_descendant;
-    std::shared_ptr<Object> right_descendant;
-
     left_hit = this->left->ray_intersect(ray, min_t, max_t, left_t, left_descendant);
+
+    bool right_hit = false;
+    double right_t = std::numeric_limits<double>::infinity();
+    std::shared_ptr<Object> right_descendant;
     right_hit = this->right->ray_intersect(ray, min_t, max_t, right_t, right_descendant);
 
     if (left_hit && right_hit)
@@ -54,6 +54,7 @@ bool AABBTree::ray_intersect(
     {
       return false;
     }
+    
     std::shared_ptr<MeshTriangle> meshTriangle1, meshTriangle2;
     if (t == left_t && left_hit)
     {
