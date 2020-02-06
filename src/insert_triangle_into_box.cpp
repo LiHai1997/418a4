@@ -9,7 +9,7 @@ void insert_triangle_into_box(
 {
   ////////////////////////////////////////////////////////////////////////////
   // Add your code here
-  auto min_x,min_y,min_z,max_x,max_y,max_z;
+  float min_x,min_y,min_z,max_x,max_y,max_z;
 
   if (a(0) < b(0) && a(0) < c(0))
   {
