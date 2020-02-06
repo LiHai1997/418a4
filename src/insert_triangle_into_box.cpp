@@ -1,4 +1,5 @@
 #include "insert_triangle_into_box.h"
+#include <iostream>
 
 void insert_triangle_into_box(
   const Eigen::RowVector3d & a,

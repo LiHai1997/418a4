@@ -1,5 +1,6 @@
 #include "nearest_neighbor_brute_force.h"
 #include <limits>// std::numeric_limits<double>::infinity();
+#include <iostream>
 
 void nearest_neighbor_brute_force(
   const Eigen::MatrixXd & points,
