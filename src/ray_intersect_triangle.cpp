@@ -45,7 +45,7 @@ bool ray_intersect_triangle(
 
   double plane_t;
 
-  if (plane_intersect(ray, min_t, max_t, triangle_n, plane_t))
+  if (plane_intersect(ray, min_t, max_t, A, triangle_n, plane_t))
   {
     Eigen::RowVector3d p0 = ray.origin + plane_t * ray.direction;
     Eigen::RowVector3d e0 = B-A;
