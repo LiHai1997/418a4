@@ -10,6 +10,34 @@ bool triangle_triangle_intersection(
 {
   ////////////////////////////////////////////////////////////////////////////
   // Replace with your code here:
-  return false; 
+  double min_t = 0,
+  double max_t = 1,
+  double t;
+
+  Ray ray(Eigen::Vecotr3d(0,0,0), Eigen::Vecotr3d(0,0,0));
+  
+  ray.origin = B0;
+  ray.direction = B1 - B0;
+
+  if (ray_intersect_triangle(ray, A0, A1, A2, min_t, max_t,t))
+  {
+    return true;
+  }
+
+  ray.origin = B1;
+  ray.direction = B2-B1;
+  if (ray_intersect_triangle(ray, A0, A1, A2, min_t, max_t, t))
+  {
+    return true;
+  }
+
+  ray.origin = B0;
+  ray.direction = B2-B0;
+  if (ray_intersect_triangle(ray, A0, A1, A2, min_t, max_t, t))
+  {
+    return true;
+  }
+
+  return false;
   ////////////////////////////////////////////////////////////////////////////
 }
